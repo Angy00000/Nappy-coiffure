@@ -660,19 +660,33 @@
 
   @media(max-width:900px){
     .nav-links{display:none;}
-    .float-badge{display:none;}
+    .float-badge{padding:9px 16px; font-size:0.8rem; gap:6px;}
+    .float-badge svg{width:14px; height:14px;}
+    .float-badge.b5,.float-badge.b6{display:none;}
     .grid{grid-template-columns:repeat(2,1fr);}
     .eng-grid{grid-template-columns:repeat(2,1fr);}
     .contact-numbers{gap:24px;}
   }
   @media(max-width:560px){
-    .hero{min-height:100vh; padding:150px 20px 90px;}
-    .logo-medallion{width:220px; height:220px;}
+    .hero{min-height:100vh; padding:140px 16px 90px;}
+    .logo-medallion{width:200px; height:200px; margin-bottom:16px;}
+    .eyebrow{font-size:0.7rem;}
+    .slogan{font-size:1.4rem;}
+    .hero-actions{gap:12px;}
+    .btn{padding:13px 22px; font-size:0.85rem;}
+    .float-badge{padding:6px 12px; font-size:0.64rem; gap:5px; box-shadow:0 8px 18px rgba(21,18,13,0.14);}
+    .float-badge svg{width:11px; height:11px;}
+    .float-badge.b1{top:15%; left:3%; right:auto; bottom:auto;}
+    .float-badge.b2{top:19%; right:3%; left:auto; bottom:auto;}
+    .float-badge.b3{bottom:17%; left:3%; top:auto; right:auto;}
+    .float-badge.b4{bottom:13%; right:3%; top:auto; left:auto;}
+    .sparkle{opacity:0.9;}
     .grid{grid-template-columns:1fr;}
     .eng-grid{grid-template-columns:1fr;}
     nav{padding:12px 18px;}
     .brand span{display:none;}
     .section{padding:60px 0;}
+    .section-head{margin-bottom:32px;}
   }
 
   @media (prefers-reduced-motion: reduce){
