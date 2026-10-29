@@ -594,6 +594,18 @@
   .hero-dot.active{width:24px; border-radius:5px; background:var(--gold-light);}
   @media(prefers-reduced-motion:reduce){.hero-slide{transition:none;} .hero-slide.active{animation:none;}}
 
+
+  /* ---------- Réseaux sociaux ---------- */
+  .soc-title{margin:38px 0 14px; font-size:0.72rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-deep);}
+  .socials{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .soc{display:inline-flex; align-items:center; gap:9px; padding:11px 20px; border-radius:999px; border:1px solid var(--gold); color:var(--charcoal); background:var(--white); font-weight:700; font-size:0.82rem; text-decoration:none; transition:all .25s ease;}
+  .soc svg{width:18px; height:18px; color:var(--gold-deep); flex:0 0 18px;}
+  .soc:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold)); color:var(--black); border-color:transparent; transform:translateY(-2px); box-shadow:0 8px 20px rgba(156,124,46,0.3);}
+  .soc:hover svg{color:var(--black);}
+  .socials-foot{margin:22px 0 26px;}
+  .socials-foot .soc{background:transparent; color:var(--white); border-color:rgba(233,215,163,0.45);}
+  .socials-foot .soc svg{color:var(--gold-light);}
+
   /* ---------- HERO : fondatrice ---------- */
   .hero-split{position:relative; z-index:3; width:100%; max-width:1180px; display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:center;}
   .hero-split .hero-inner{max-width:none;}
@@ -1385,6 +1397,12 @@
       </a>
       <a class="btn btn-outline" href="tel:+221338586588">+221 33 858 65 88</a>
     </div>
+
+    <p class="soc-title">Suivez-nous</p>
+    <div class="socials">
+      <a class="soc" href="https://www.facebook.com/share/1M33j7CeBS/" target="_blank" rel="noopener" aria-label="Nappy Coiffure sur Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.87.25-1.46 1.5-1.46h1.6V4.46A21 21 0 0 0 14.27 4.3c-2.3 0-3.87 1.4-3.87 3.98v2.22H7.8v3h2.6V21h3.1Z"/></svg><span>Facebook</span></a>
+      <a class="soc" href="https://www.tiktok.com/@nappycoiffure" target="_blank" rel="noopener" aria-label="Nappy Coiffure sur TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.68 5.68 0 0 0-.77-.05A5.69 5.69 0 0 0 4.17 15.3 5.69 5.69 0 0 0 9.86 21a5.69 5.69 0 0 0 5.69-5.69V9.01a7.35 7.35 0 0 0 4.29 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48Z"/></svg><span>@nappycoiffure</span></a>
+    </div>
   </div>
 </section>
 
@@ -1402,6 +1420,10 @@
       <a href="#galerie">Galerie</a>
       <a href="#engagements">Engagements</a>
       <a href="#contact">Contact</a>
+    </div>
+    <div class="socials socials-foot">
+      <a class="soc" href="https://www.facebook.com/share/1M33j7CeBS/" target="_blank" rel="noopener" aria-label="Nappy Coiffure sur Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.87.25-1.46 1.5-1.46h1.6V4.46A21 21 0 0 0 14.27 4.3c-2.3 0-3.87 1.4-3.87 3.98v2.22H7.8v3h2.6V21h3.1Z"/></svg><span>Facebook</span></a>
+      <a class="soc" href="https://www.tiktok.com/@nappycoiffure" target="_blank" rel="noopener" aria-label="Nappy Coiffure sur TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.68 5.68 0 0 0-.77-.05A5.69 5.69 0 0 0 4.17 15.3 5.69 5.69 0 0 0 9.86 21a5.69 5.69 0 0 0 5.69-5.69V9.01a7.35 7.35 0 0 0 4.29 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48Z"/></svg><span>@nappycoiffure</span></a>
     </div>
     <div class="rule"></div>
     <p class="copy">© 2026 Nappy Coiffure — Tous droits réservés.</p>
