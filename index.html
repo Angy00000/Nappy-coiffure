@@ -626,6 +626,47 @@
     .map-frame{aspect-ratio:4/4;}
   }
 
+
+  /* ---------- TARIFS : affichage par catégorie (style Angy Tech) ---------- */
+  .cat-nav-wrap{position:sticky; top:var(--hdr,72px); z-index:60; background:rgba(250,246,238,0.96); backdrop-filter:blur(10px); padding:12px 0; margin:0 -24px 34px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); box-shadow:0 6px 18px rgba(21,18,13,0.05);}
+  .cat-nav{display:flex; gap:10px; overflow-x:auto; padding:0 24px; scrollbar-width:none;}
+  .cat-nav::-webkit-scrollbar{display:none;}
+  .cat-pill{flex:0 0 auto; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:999px; border:1.5px solid var(--line); background:var(--white); color:var(--charcoal); font-weight:700; font-size:0.8rem; text-decoration:none; white-space:nowrap; transition:all .25s;}
+  .cat-pill svg{width:15px; height:15px; stroke:var(--gold-deep); fill:none; stroke-width:1.6;}
+  .cat-pill:hover{border-color:var(--gold); color:var(--gold-deep);}
+  .cat-pill.active{background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,var(--gold-deep)); border-color:transparent; color:var(--black); box-shadow:0 6px 16px rgba(156,124,46,0.35);}
+  .cat-pill.active svg{stroke:var(--black);}
+  .cat-blocks{display:flex; flex-direction:column; gap:44px;}
+  .cat-block{scroll-margin-top:calc(var(--hdr,72px) + 80px);}
+  .cat-head{display:flex; align-items:baseline; gap:14px; margin-bottom:16px;}
+  .cat-title{font-family:'Marcellus',serif; font-size:1.75rem; color:var(--charcoal); margin:0; padding-left:16px; position:relative;}
+  .cat-title::before{content:""; position:absolute; left:0; top:4px; bottom:4px; width:5px; border-radius:3px; background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));}
+  .cat-count{font-size:0.8rem; color:#8a8270; font-weight:600;}
+  .cat-row{display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:6px 2px 18px;}
+  .cat-row::-webkit-scrollbar{height:7px;}
+  .cat-row::-webkit-scrollbar-track{background:#efe8d8; border-radius:4px;}
+  .cat-row::-webkit-scrollbar-thumb{background:rgba(156,124,46,0.45); border-radius:4px;}
+  .scard{flex:0 0 240px; scroll-snap-align:start; background:var(--white); border:1px solid var(--line); border-radius:16px; overflow:hidden; box-shadow:0 4px 18px rgba(21,18,13,0.06); display:flex; flex-direction:column; transition:all .3s;}
+  .scard:hover{transform:translateY(-6px); border-color:var(--gold); box-shadow:0 20px 44px rgba(156,124,46,0.2);}
+  .scard-img{position:relative; height:170px; background:linear-gradient(135deg,#2a241a,#15120d); background-size:cover; background-position:center 25%; transition:background-size .4s;}
+  .scard-img::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(21,18,13,0) 45%,rgba(21,18,13,0.55));}
+  .scard-badge{position:absolute; top:10px; left:10px; z-index:1; background:rgba(21,18,13,0.75); color:var(--gold-light); border:1px solid rgba(233,215,163,0.5); font-size:0.6rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px; border-radius:20px; backdrop-filter:blur(4px);}
+  .scard-body{padding:16px 16px 16px; display:flex; flex-direction:column; flex:1;}
+  .scard-name{font-family:'Marcellus',serif; font-size:1.05rem; color:var(--charcoal); margin:0 0 4px; line-height:1.3;}
+  .scard-note{font-size:0.72rem; font-style:italic; color:#8a8270; margin:0 0 12px; min-height:1em;}
+  .scard-price{margin-top:auto; font-weight:800; font-size:1.05rem; color:var(--gold-deep); padding-top:10px; border-top:1px solid var(--line); margin-bottom:12px;}
+  .scard-price.tbd{font-style:italic; font-weight:600; font-size:0.85rem; color:#8a8270; text-transform:uppercase; letter-spacing:0.05em;}
+  .scard-btn{display:flex; align-items:center; justify-content:center; gap:8px; padding:11px; border-radius:10px; background:var(--black); color:var(--gold-light); font-weight:700; font-size:0.76rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:all .25s;}
+  .scard-btn svg{width:15px; height:15px;}
+  .scard-btn:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold)); color:var(--black); box-shadow:0 8px 20px rgba(156,124,46,0.35);}
+  @media(max-width:640px){
+    .scard{flex:0 0 210px;}
+    .scard-img{height:150px;}
+    .cat-title{font-size:1.45rem;}
+    .cat-nav-wrap{margin:0 -16px 26px;}
+    .cat-nav{padding:0 16px;}
+  }
+
   /* ---------- HERO : fondatrice ---------- */
   .hero-split{position:relative; z-index:3; width:100%; max-width:1180px; display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:center;}
   .hero-split .hero-inner{max-width:none;}
@@ -1149,147 +1190,493 @@
       <p>Un aperçu de nos tarifs à titre indicatif. Le prix exact dépend de la longueur, de l'épaisseur et de la complexité de la prestation — confirmé avec vous sur WhatsApp avant chaque rendez-vous.</p>
     </div>
 
-    <div class="ptabs" role="tablist">
-      <button class="ptab active" data-pcat="soins" type="button" role="tab" aria-selected="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z"/></svg><span>Soins</span></button>
-      <button class="ptab" data-pcat="defrisage" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 2c-1.5 3-4 5-4 9a4 4 0 0 0 8 0c0-1-.3-1.8-.8-2.6-.2 1-1 1.8-1.7 1.8-.9 0-1.3-.8-1.1-1.8.3-1.3.9-2.4 1.6-3.4-.7-1-1.3-2-2-3Z"/></svg><span>Défrisage</span></button>
-      <button class="ptab" data-pcat="tresses-adultes" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 3v6M9 6l3 3 3-3M6 12c0 4 3 6 6 9 3-3 6-5 6-9a6 6 0 0 0-12 0Z"/></svg><span>Tresses adultes</span></button>
-      <button class="ptab" data-pcat="tresses-enfants" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.4L22 9l-5 4.6L18.4 22 12 18l-6.4 4L7 13.6 2 9l7.4-.6L12 2Z"/></svg><span>Tresses enfants</span></button>
-      <button class="ptab" data-pcat="grefage-tissage" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5-9 5-9-5Z"/><path d="M3 15l9 5 9-5"/><path d="M3 8v7M21 8v7"/></svg><span>Gréfage / Tissage</span></button>
-      <button class="ptab" data-pcat="perruque" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M4 18h16M5 18l-1-9 5 4 3-6 3 6 5-4-1 9"/></svg><span>Perruque</span></button>
-      <button class="ptab" data-pcat="traitement-cheveux" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 2s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11Z"/></svg><span>Traitement cheveux</span></button>
-      <button class="ptab" data-pcat="make-up" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M4 20 15 9l2 2L6 22H4v-2Z"/><path d="M13 6l5 5"/></svg><span>Make-up</span></button>
-      <button class="ptab" data-pcat="ongles" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 3c-2 3-3 5-3 7a3 3 0 0 0 6 0c0-2-1-4-3-7Z"/><path d="M6 21c0-3 2.5-5 6-5s6 2 6 5"/></svg><span>Ongles</span></button>
-      <button class="ptab" data-pcat="twists" type="button" role="tab" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M6 4c3 4 3 12 0 16M12 4c3 4 3 12 0 16M18 4c3 4 3 12 0 16"/></svg><span>Twists</span></button>
-    </div>
+    <div class="cat-nav-wrap"><nav class="cat-nav" aria-label="Catégories de prestations">
+      <a class="cat-pill active" href="#cat-soins" data-cat="soins"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z"/></svg><span>Soins</span></a>
+      <a class="cat-pill" href="#cat-defrisage" data-cat="defrisage"><svg viewBox="0 0 24 24"><path d="M12 2c-1.5 3-4 5-4 9a4 4 0 0 0 8 0c0-1-.3-1.8-.8-2.6-.2 1-1 1.8-1.7 1.8-.9 0-1.3-.8-1.1-1.8.3-1.3.9-2.4 1.6-3.4-.7-1-1.3-2-2-3Z"/></svg><span>Défrisage</span></a>
+      <a class="cat-pill" href="#cat-tresses-adultes" data-cat="tresses-adultes"><svg viewBox="0 0 24 24"><path d="M12 3v6M9 6l3 3 3-3M6 12c0 4 3 6 6 9 3-3 6-5 6-9a6 6 0 0 0-12 0Z"/></svg><span>Tresses adultes</span></a>
+      <a class="cat-pill" href="#cat-tresses-enfants" data-cat="tresses-enfants"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.4L22 9l-5 4.6L18.4 22 12 18l-6.4 4L7 13.6 2 9l7.4-.6L12 2Z"/></svg><span>Tresses enfants</span></a>
+      <a class="cat-pill" href="#cat-grefage-tissage" data-cat="grefage-tissage"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5-9 5-9-5Z"/><path d="M3 15l9 5 9-5"/><path d="M3 8v7M21 8v7"/></svg><span>Gréfage / Tissage</span></a>
+      <a class="cat-pill" href="#cat-perruque" data-cat="perruque"><svg viewBox="0 0 24 24"><path d="M4 18h16M5 18l-1-9 5 4 3-6 3 6 5-4-1 9"/></svg><span>Perruque</span></a>
+      <a class="cat-pill" href="#cat-traitement-cheveux" data-cat="traitement-cheveux"><svg viewBox="0 0 24 24"><path d="M12 2s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11Z"/></svg><span>Traitement cheveux</span></a>
+      <a class="cat-pill" href="#cat-make-up" data-cat="make-up"><svg viewBox="0 0 24 24"><path d="M4 20 15 9l2 2L6 22H4v-2Z"/><path d="M13 6l5 5"/></svg><span>Make-up</span></a>
+      <a class="cat-pill" href="#cat-ongles" data-cat="ongles"><svg viewBox="0 0 24 24"><path d="M12 3c-2 3-3 5-3 7a3 3 0 0 0 6 0c0-2-1-4-3-7Z"/><path d="M6 21c0-3 2.5-5 6-5s6 2 6 5"/></svg><span>Ongles</span></a>
+      <a class="cat-pill" href="#cat-twists" data-cat="twists"><svg viewBox="0 0 24 24"><path d="M6 4c3 4 3 12 0 16M12 4c3 4 3 12 0 16M18 4c3 4 3 12 0 16"/></svg><span>Twists</span></a>
+    </nav></div>
 
-    <div class="price-panes">
-      <div class="price-col pcat active" id="pcat-soins" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z"/></svg></span>Soins</h3>
-        <p class="pcat-count">6 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Shampoing (adulte/enfant)</span><span class="p-dots"></span><span class="p-value">2 000 – 2 500 F</span></div>
-        <div class="price-row"><span class="p-name">Shampoing + lissage</span><span class="p-dots"></span><span class="p-value">3 000 – 5 000 F</span></div>
-        <div class="price-row"><span class="p-name">Shampoing + brushing</span><span class="p-dots"></span><span class="p-value">8 000 F</span></div>
-        <div class="price-row"><span class="p-name">Shampoing + mise en plis</span><span class="p-dots"></span><span class="p-value">5 000 – 8 000 F</span></div>
-        <div class="price-row"><span class="p-name">Chignon avec cheveux</span><span class="p-dots"></span><span class="p-value">10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Chignon avec gel</span><span class="p-dots"></span><span class="p-value">8 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Soins" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Soins</a>
+    <div class="cat-blocks">
+    <div class="cat-block" id="cat-soins">
+      <div class="cat-head"><h3 class="cat-title">Soins</h3><span class="cat-count">6 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Soins</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Shampoing (adulte/enfant)</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">2 000 – 2 500 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Soins%20%E2%80%94%20Shampoing%20%28adulte/enfant%29%20%282%20000%20%E2%80%93%202%20500%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Soins</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Shampoing + lissage</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">3 000 – 5 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Soins%20%E2%80%94%20Shampoing%20%2B%20lissage%20%283%20000%20%E2%80%93%205%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Soins</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Shampoing + brushing</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Soins%20%E2%80%94%20Shampoing%20%2B%20brushing%20%288%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Soins</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Shampoing + mise en plis</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 – 8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Soins%20%E2%80%94%20Shampoing%20%2B%20mise%20en%20plis%20%285%20000%20%E2%80%93%208%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Soins</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Chignon avec cheveux</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Soins%20%E2%80%94%20Chignon%20avec%20cheveux%20%2810%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Soins</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Chignon avec gel</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Soins%20%E2%80%94%20Chignon%20avec%20gel%20%288%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-defrisage" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M12 2c-1.5 3-4 5-4 9a4 4 0 0 0 8 0c0-1-.3-1.8-.8-2.6-.2 1-1 1.8-1.7 1.8-.9 0-1.3-.8-1.1-1.8.3-1.3.9-2.4 1.6-3.4-.7-1-1.3-2-2-3Z"/></svg></span>Défrisage</h3>
-        <p class="pcat-count">5 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Défrisage simple</span><span class="p-dots"></span><span class="p-value">5 000 F</span></div>
-        <div class="price-row"><span class="p-name">Défrisage + lissage</span><span class="p-dots"></span><span class="p-value">7 000 F</span></div>
-        <div class="price-row"><span class="p-name">Défrisage + brushing</span><span class="p-dots"></span><span class="p-value">10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Défrisage + mise en plis</span><span class="p-dots"></span><span class="p-value">10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Défrisage (nos produits)</span><span class="p-dots"></span><span class="p-value">8 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20D%C3%A9frisage" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Défrisage</a>
+    </div>
+    <div class="cat-block" id="cat-defrisage">
+      <div class="cat-head"><h3 class="cat-title">Défrisage</h3><span class="cat-count">5 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Défrisage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Défrisage simple</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20D%C3%A9frisage%20%E2%80%94%20D%C3%A9frisage%20simple%20%285%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Défrisage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Défrisage + lissage</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">7 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20D%C3%A9frisage%20%E2%80%94%20D%C3%A9frisage%20%2B%20lissage%20%287%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Défrisage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Défrisage + brushing</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20D%C3%A9frisage%20%E2%80%94%20D%C3%A9frisage%20%2B%20brushing%20%2810%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Défrisage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Défrisage + mise en plis</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20D%C3%A9frisage%20%E2%80%94%20D%C3%A9frisage%20%2B%20mise%20en%20plis%20%2810%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Coupe"><span class="scard-badge">Défrisage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Défrisage (nos produits)</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20D%C3%A9frisage%20%E2%80%94%20D%C3%A9frisage%20%28nos%20produits%29%20%288%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-tresses-adultes" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M12 3v6M9 6l3 3 3-3M6 12c0 4 3 6 6 9 3-3 6-5 6-9a6 6 0 0 0-12 0Z"/></svg></span>Tresses adultes</h3>
-        <p class="pcat-count">9 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Mèches simples</span><span class="p-dots"></span><span class="p-value">7 000 F</span></div>
-        <div class="price-row"><span class="p-name">Mèches + rajouts*</span><span class="p-dots"></span><span class="p-value">6 000 – 15 000 F</span></div>
-        <div class="price-row"><span class="p-name">Mèches torsadées</span><span class="p-dots"></span><span class="p-value">8 000 F</span></div>
-        <div class="price-row"><span class="p-name">Mèches Knotless*</span><span class="p-dots"></span><span class="p-value">10 000 – 15 000 F</span></div>
-        <div class="price-row"><span class="p-name">Tiges simples*</span><span class="p-dots"></span><span class="p-value">5 000 – 7 000 F</span></div>
-        <div class="price-row"><span class="p-name">Tiges avec mèches*</span><span class="p-dots"></span><span class="p-value">10 000 – 15 000 F</span></div>
-        <div class="price-row"><span class="p-name">Renversées simples*</span><span class="p-dots"></span><span class="p-value">4 000 – 7 000 F</span></div>
-        <div class="price-row"><span class="p-name">Renversées avec mèches*</span><span class="p-dots"></span><span class="p-value">7 000 – 10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Curly</span><span class="p-dots"></span><span class="p-value">20 000 – 25 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Tresses%20adultes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Tresses adultes</a>
+    </div>
+    <div class="cat-block" id="cat-tresses-adultes">
+      <div class="cat-head"><h3 class="cat-title">Tresses adultes</h3><span class="cat-count">9 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Mèches simples</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">7 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20M%C3%A8ches%20simples%20%287%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Mèches + rajouts*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">6 000 – 15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20M%C3%A8ches%20%2B%20rajouts%20%286%20000%20%E2%80%93%2015%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Mèches torsadées</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20M%C3%A8ches%20torsad%C3%A9es%20%288%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Mèches Knotless*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 – 15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20M%C3%A8ches%20Knotless%20%2810%20000%20%E2%80%93%2015%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Tiges simples*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 – 7 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20Tiges%20simples%20%285%20000%20%E2%80%93%207%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Tiges avec mèches*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 – 15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20Tiges%20avec%20m%C3%A8ches%20%2810%20000%20%E2%80%93%2015%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Renversées simples*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">4 000 – 7 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20Renvers%C3%A9es%20simples%20%284%20000%20%E2%80%93%207%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Renversées avec mèches*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">7 000 – 10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20Renvers%C3%A9es%20avec%20m%C3%A8ches%20%287%20000%20%E2%80%93%2010%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses adultes</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Curly</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">20 000 – 25 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20adultes%20%E2%80%94%20Curly%20%2820%20000%20%E2%80%93%2025%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-tresses-enfants" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.4L22 9l-5 4.6L18.4 22 12 18l-6.4 4L7 13.6 2 9l7.4-.6L12 2Z"/></svg></span>Tresses enfants</h3>
-        <p class="pcat-count">2 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Mèches simples*</span><span class="p-dots"></span><span class="p-value">5 000 – 10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Mèches torsadées*</span><span class="p-dots"></span><span class="p-value">5 000 – 10 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Tresses%20enfants" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Tresses enfants</a>
+    </div>
+    <div class="cat-block" id="cat-tresses-enfants">
+      <div class="cat-head"><h3 class="cat-title">Tresses enfants</h3><span class="cat-count">2 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses enfants</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Mèches simples*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 – 10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20enfants%20%E2%80%94%20M%C3%A8ches%20simples%20%285%20000%20%E2%80%93%2010%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Tresses"><span class="scard-badge">Tresses enfants</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Mèches torsadées*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 – 10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Tresses%20enfants%20%E2%80%94%20M%C3%A8ches%20torsad%C3%A9es%20%285%20000%20%E2%80%93%2010%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-grefage-tissage" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5-9 5-9-5Z"/><path d="M3 15l9 5 9-5"/><path d="M3 8v7M21 8v7"/></svg></span>Gréfage / Tissage</h3>
-        <p class="pcat-count">4 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Fixage</span><span class="p-dots"></span><span class="p-value">8 000 F</span></div>
-        <div class="price-row"><span class="p-name">Coupe carré</span><span class="p-dots"></span><span class="p-value">10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Coupe dame</span><span class="p-dots"></span><span class="p-value">15 000 F</span></div>
-        <div class="price-row"><span class="p-name">Petite tête</span><span class="p-dots"></span><span class="p-value tbd">Sur devis</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Gr%C3%A9fage%20/%20Tissage" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Gréfage / Tissage</a>
+    </div>
+    <div class="cat-block" id="cat-grefage-tissage">
+      <div class="cat-head"><h3 class="cat-title">Gréfage / Tissage</h3><span class="cat-count">4 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Mèches"><span class="scard-badge">Gréfage / Tissage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Fixage</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Gr%C3%A9fage%20/%20Tissage%20%E2%80%94%20Fixage%20%288%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Mèches"><span class="scard-badge">Gréfage / Tissage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Coupe carré</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Gr%C3%A9fage%20/%20Tissage%20%E2%80%94%20Coupe%20carr%C3%A9%20%2810%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Mèches"><span class="scard-badge">Gréfage / Tissage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Coupe dame</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Gr%C3%A9fage%20/%20Tissage%20%E2%80%94%20Coupe%20dame%20%2815%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Mèches"><span class="scard-badge">Gréfage / Tissage</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Petite tête</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price tbd">Sur devis</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Gr%C3%A9fage%20/%20Tissage%20%E2%80%94%20Petite%20t%C3%AAte%20%28Sur%20devis%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-perruque" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M4 18h16M5 18l-1-9 5 4 3-6 3 6 5-4-1 9"/></svg></span>Perruque</h3>
-        <p class="pcat-count">3 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Confection à la main</span><span class="p-dots"></span><span class="p-value">8 000 F</span></div>
-        <div class="price-row"><span class="p-name">Confection avec machine</span><span class="p-dots"></span><span class="p-value">10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Entretien perruque</span><span class="p-dots"></span><span class="p-value">8 000 – 15 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Perruque" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Perruque</a>
+    </div>
+    <div class="cat-block" id="cat-perruque">
+      <div class="cat-head"><h3 class="cat-title">Perruque</h3><span class="cat-count">3 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Vente de mèches"><span class="scard-badge">Perruque</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Confection à la main</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Perruque%20%E2%80%94%20Confection%20%C3%A0%20la%20main%20%288%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Vente de mèches"><span class="scard-badge">Perruque</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Confection avec machine</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Perruque%20%E2%80%94%20Confection%20avec%20machine%20%2810%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Vente de mèches"><span class="scard-badge">Perruque</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Entretien perruque</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 – 15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Perruque%20%E2%80%94%20Entretien%20perruque%20%288%20000%20%E2%80%93%2015%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-traitement-cheveux" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M12 2s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11Z"/></svg></span>Traitement cheveux</h3>
-        <p class="pcat-count">3 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Adulte / enfant<span class="p-note">5 séances, une fréquence de 2 semaines</span></span><span class="p-dots"></span><span class="p-value">30 000 – 35 000 F</span></div>
-        <div class="price-row"><span class="p-name">Soins locks</span><span class="p-dots"></span><span class="p-value">20 000 – 25 000 F</span></div>
-        <div class="price-row"><span class="p-name">Resserrage simple<span class="p-note">avec ou sans shampoing</span></span><span class="p-dots"></span><span class="p-value">15 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Traitement%20cheveux" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Traitement cheveux</a>
+    </div>
+    <div class="cat-block" id="cat-traitement-cheveux">
+      <div class="cat-head"><h3 class="cat-title">Traitement cheveux</h3><span class="cat-count">3 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Traitement cheveux</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Adulte / enfant</h4>
+            <p class="scard-note">5 séances, une fréquence de 2 semaines</p>
+            <div class="scard-price">30 000 – 35 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Traitement%20cheveux%20%E2%80%94%20Adulte%20/%20enfant%20%2830%20000%20%E2%80%93%2035%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Traitement cheveux</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Soins locks</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">20 000 – 25 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Traitement%20cheveux%20%E2%80%94%20Soins%20locks%20%2820%20000%20%E2%80%93%2025%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Traitement cheveux</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Resserrage simple</h4>
+            <p class="scard-note">avec ou sans shampoing</p>
+            <div class="scard-price">15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Traitement%20cheveux%20%E2%80%94%20Resserrage%20simple%20%2815%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-make-up" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M4 20 15 9l2 2L6 22H4v-2Z"/><path d="M13 6l5 5"/></svg></span>Make-up</h3>
-        <p class="pcat-count">2 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Make-up simple</span><span class="p-dots"></span><span class="p-value">8 000 F</span></div>
-        <div class="price-row"><span class="p-name">Make-up de cérémonie</span><span class="p-dots"></span><span class="p-value">à partir de 20 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Make-up" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Make-up</a>
+    </div>
+    <div class="cat-block" id="cat-make-up">
+      <div class="cat-head"><h3 class="cat-title">Make-up</h3><span class="cat-count">2 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Maquillage"><span class="scard-badge">Make-up</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Make-up simple</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Make-up%20%E2%80%94%20Make-up%20simple%20%288%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Maquillage"><span class="scard-badge">Make-up</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Make-up de cérémonie</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">à partir de 20 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Make-up%20%E2%80%94%20Make-up%20de%20c%C3%A9r%C3%A9monie%20%28%C3%A0%20partir%20de%2020%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-ongles" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-2 3-3 5-3 7a3 3 0 0 0 6 0c0-2-1-4-3-7Z"/><path d="M6 21c0-3 2.5-5 6-5s6 2 6 5"/></svg></span>Ongles</h3>
-        <p class="pcat-count">5 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Vernis simple</span><span class="p-dots"></span><span class="p-value">3 000 F</span></div>
-        <div class="price-row"><span class="p-name">Vernis permanent</span><span class="p-dots"></span><span class="p-value">5 000 F</span></div>
-        <div class="price-row"><span class="p-name">Pose ongle</span><span class="p-dots"></span><span class="p-value">5 000 F</span></div>
-        <div class="price-row"><span class="p-name">Gel acrylique</span><span class="p-dots"></span><span class="p-value">10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Manicure / pédicure</span><span class="p-dots"></span><span class="p-value">10 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Ongles" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Ongles</a>
+    </div>
+    <div class="cat-block" id="cat-ongles">
+      <div class="cat-head"><h3 class="cat-title">Ongles</h3><span class="cat-count">5 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Manucure"><span class="scard-badge">Ongles</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Vernis simple</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">3 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Ongles%20%E2%80%94%20Vernis%20simple%20%283%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Manucure"><span class="scard-badge">Ongles</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Vernis permanent</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Ongles%20%E2%80%94%20Vernis%20permanent%20%285%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Onglerie"><span class="scard-badge">Ongles</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Pose ongle</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Ongles%20%E2%80%94%20Pose%20ongle%20%285%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Onglerie"><span class="scard-badge">Ongles</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Gel acrylique</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Ongles%20%E2%80%94%20Gel%20acrylique%20%2810%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Pédicure"><span class="scard-badge">Ongles</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Manicure / pédicure</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Ongles%20%E2%80%94%20Manicure%20/%20p%C3%A9dicure%20%2810%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
-      <div class="price-col pcat" id="pcat-twists" role="tabpanel">
-        <h3><span class="p-icon"><svg viewBox="0 0 24 24"><path d="M6 4c3 4 3 12 0 16M12 4c3 4 3 12 0 16M18 4c3 4 3 12 0 16"/></svg></span>Twists</h3>
-        <p class="pcat-count">8 prestations</p>
-        <div class="p-divider"></div>
-        <div class="p-rows">
-        <div class="price-row"><span class="p-name">Twists simples*</span><span class="p-dots"></span><span class="p-value">5 000 – 10 000 F</span></div>
-        <div class="price-row"><span class="p-name">Twists simples + teinture<span class="p-note">selon coloration (bout ou longueur)</span></span><span class="p-dots"></span><span class="p-value">+5 000 – 8 000 F</span></div>
-        <div class="price-row"><span class="p-name">Twists mèches synthétiques*</span><span class="p-dots"></span><span class="p-value">8 000 – 15 000 F</span></div>
-        <div class="price-row"><span class="p-name">Twists mèches naturelles<span class="p-note">peut prendre la teinture</span></span><span class="p-dots"></span><span class="p-value">25 000 F</span></div>
-        <div class="price-row"><span class="p-name">Twists rajouts naturels</span><span class="p-dots"></span><span class="p-value">20 000 F</span></div>
-        <div class="price-row"><span class="p-name">Twists extension synthétique<span class="p-note">sans mèches fournies</span></span><span class="p-dots"></span><span class="p-value">15 000 F</span></div>
-        <div class="price-row"><span class="p-name">Micro-twists avec cheveux</span><span class="p-dots"></span><span class="p-value">50 000 F</span></div>
-        <div class="price-row"><span class="p-name">Installation locks<span class="p-note">sur cheveux naturels</span></span><span class="p-dots"></span><span class="p-value">80 000 F</span></div>
-        </div>
-        <a class="pcat-cta" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20une%20prestation%20%3A%20Twists" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver — Twists</a>
+    </div>
+    <div class="cat-block" id="cat-twists">
+      <div class="cat-head"><h3 class="cat-title">Twists</h3><span class="cat-count">8 prestations</span></div>
+      <div class="cat-row">
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Twists simples*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">5 000 – 10 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Twists%20simples%20%285%20000%20%E2%80%93%2010%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Twists simples + teinture</h4>
+            <p class="scard-note">selon coloration (bout ou longueur)</p>
+            <div class="scard-price">+5 000 – 8 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Twists%20simples%20%2B%20teinture%20%28%2B5%20000%20%E2%80%93%208%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Twists mèches synthétiques*</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">8 000 – 15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Twists%20m%C3%A8ches%20synth%C3%A9tiques%20%288%20000%20%E2%80%93%2015%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Twists mèches naturelles</h4>
+            <p class="scard-note">peut prendre la teinture</p>
+            <div class="scard-price">25 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Twists%20m%C3%A8ches%20naturelles%20%2825%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Twists rajouts naturels</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">20 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Twists%20rajouts%20naturels%20%2820%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Twists extension synthétique</h4>
+            <p class="scard-note">sans mèches fournies</p>
+            <div class="scard-price">15 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Twists%20extension%20synth%C3%A9tique%20%2815%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Micro-twists avec cheveux</h4>
+            <p class="scard-note">&nbsp;</p>
+            <div class="scard-price">50 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Micro-twists%20avec%20cheveux%20%2850%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
+        <article class="scard">
+          <div class="scard-img" data-img="Locks"><span class="scard-badge">Twists</span></div>
+          <div class="scard-body">
+            <h4 class="scard-name">Installation locks</h4>
+            <p class="scard-note">sur cheveux naturels</p>
+            <div class="scard-price">80 000 F</div>
+            <a class="scard-btn" href="https://wa.me/221774935154?text=Bonjour%20Nappy%20Coiffure%2C%20je%20souhaite%20r%C3%A9server%20%3A%20Twists%20%E2%80%94%20Installation%20locks%20%2880%20000%20F%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.15L2 22l5.09-1.53a9.9 9.9 0 0 0 4.95 1.33h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.64-1.03-5.13-2.9-6.99A9.82 9.82 0 0 0 12.04 2Z"/></svg>Réserver</a>
+          </div>
+        </article>
       </div>
+    </div>
     </div>
 
     <div class="pricing-note">
@@ -1470,21 +1857,6 @@
 
 <script>
 (function(){
-  var tabs=document.querySelectorAll('.ptab');
-  tabs.forEach(function(t){
-    t.addEventListener('click',function(){
-      tabs.forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});
-      document.querySelectorAll('.pcat').forEach(function(p){p.classList.remove('active');});
-      t.classList.add('active');t.setAttribute('aria-selected','true');
-      var pane=document.getElementById('pcat-'+t.dataset.pcat);
-      if(pane) pane.classList.add('active');
-      t.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
-    });
-  });
-})();
-</script>
-<script>
-(function(){
   var hero=document.getElementById('accueil'); if(!hero) return;
   var first=hero.querySelector('.hero-slide'); var dots=hero.querySelector('.hero-dots');
   var wanted=['Tresses','Locks','Maquillage','Mèches','Onglerie','Soins du visage'];
@@ -1503,6 +1875,26 @@
   function start(){clearInterval(timer); timer=setInterval(function(){go((i+1)%slides.length);},6000);}
   if(slides.length>1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) start();
   if(slides.length<2) dots.style.display='none';
+})();
+</script>
+<script>
+(function(){
+  var hdr=document.querySelector('header');
+  function setH(){ if(hdr) document.documentElement.style.setProperty('--hdr', hdr.offsetHeight+'px'); }
+  setH(); window.addEventListener('resize', setH);
+  // images des cartes : reprises de la galerie (pas de doublon dans le fichier)
+  var gal={};
+  document.querySelectorAll('.g-item').forEach(function(it){var t=it.querySelector('.g-tag'),i=it.querySelector('img'); if(t&&i) gal[t.textContent.trim()]=i.src;});
+  document.querySelectorAll('.scard-img[data-img]').forEach(function(d){var s=gal[d.dataset.img]; if(s) d.style.backgroundImage='url("'+s+'")';});
+  // pilules : défilement + suivi de la catégorie visible
+  var pills=[].slice.call(document.querySelectorAll('.cat-pill'));
+  var nav=document.querySelector('.cat-nav');
+  function act(slug){pills.forEach(function(p){var on=p.dataset.cat===slug; p.classList.toggle('active',on); if(on&&nav){nav.scrollTo({left:p.offsetLeft-nav.clientWidth/2+p.offsetWidth/2,behavior:'smooth'});}});}
+  pills.forEach(function(p){p.addEventListener('click',function(e){e.preventDefault(); var t=document.getElementById('cat-'+p.dataset.cat); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); act(p.dataset.cat);});});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting) act(en.target.id.replace('cat-',''));});},{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('.cat-block').forEach(function(b){io.observe(b);});
+  }
 })();
 </script>
 </body>
